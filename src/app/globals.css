@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --color-canvas: #faf6ec;
+  --color-canvas-line: #e8ddc4;
+  --color-ink: #2b2b26;
+  --color-ink-soft: #6b6657;
+  --color-forest: #1b3a2b;
+  --color-forest-deep: #122a1f;
+  --color-leaf: #4f9d3a;
+  --color-leaf-bright: #5dbe3f;
+  --color-gold: #e8b339;
+  --color-gold-soft: #f6d98a;
+  --color-clay: #d9714e;
+  --color-sky: #3d8fc4;
+
+  --font-display: "Baloo 2", ui-rounded, system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-canvas);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+}
+
+main {
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(93, 190, 63, 0.07),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 88% 92%,
+      rgba(232, 179, 57, 0.08),
+      transparent 42%
+    ),
+    var(--color-canvas);
+  background-size: cover;
+  position: relative;
+}
+
+.ruled-edge {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--color-canvas-line) 0,
+    var(--color-canvas-line) 1px,
+    transparent 1px,
+    transparent 38px
+  );
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-rise {
+  animation: riseIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-pulse-dot {
+    animation: none !important;
+  }
+}
+
+::selection {
+  background: var(--color-gold-soft);
+  color: var(--color-forest-deep);
+}
+
+.feed-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.feed-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.feed-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-canvas-line);
+  border-radius: 999px;
+}
+.feed-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--color-leaf);
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
